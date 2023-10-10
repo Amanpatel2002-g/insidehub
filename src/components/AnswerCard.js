@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import { FaHeart } from 'react-icons/fa';
 import { AiTwotoneDelete } from 'react-icons/ai';
 import { FiEdit } from 'react-icons/fi';
+import api from "../globalvariables";
 function AnswerCard({ name, email, answer, likes, id, fetchAnswerFun, userId }) {
   const [newAns, setNewAns] = useState(answer);
   const auth = localStorage.getItem('inquera-user');
@@ -10,7 +11,7 @@ function AnswerCard({ name, email, answer, likes, id, fetchAnswerFun, userId }) 
   const DeleteAnswer = async () => {
     const yes = window.confirm("Are you sure want to delete?")
     if (yes) {
-      await fetch(`https://inquera.onrender.com/delete-answer/${id}`, {
+      await fetch(api+`delete-answer/${id}`, {
         method: "Delete",
         headers: {
           'Content-Type': 'application/json'
@@ -24,7 +25,7 @@ function AnswerCard({ name, email, answer, likes, id, fetchAnswerFun, userId }) 
   const updateAnswer = async () => {
     const yes = window.confirm("Are you sure want to Update?")
     if (yes) {
-      let update = await fetch(`https://inquera.onrender.com/answer-edit/${id}`, {
+      let update = await fetch(api+`answer-edit/${id}`, {
         method: "put",
         body: JSON.stringify({ answer: newAns }),
         headers: {

@@ -2,6 +2,7 @@ import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 const ContextAPI = createContext();
+const api = "http://localhost:5000/"
 export function PollsHubContextProvider({ children }) {
   const navigate = useNavigate();
   // signup function 
@@ -10,7 +11,7 @@ export function PollsHubContextProvider({ children }) {
   const [password, setPassword] = useState("");
   const HandleUserSignUp = async (e) => {
     e.preventDefault();
-    let result = await fetch("https://inquera.onrender.com/register", {
+    let result = await fetch(api+"register", {
       method: "POST",
       body: JSON.stringify({ name, email, password }),
       headers: {
@@ -34,7 +35,7 @@ export function PollsHubContextProvider({ children }) {
   //    login function 
   const handleLogin = async (e) => {
     e.preventDefault();
-    let result = await fetch("https://inquera.onrender.com/login", {
+    let result = await fetch(api+"login", {
       method: "POST",
       body: JSON.stringify({ email, password }),
       headers: {

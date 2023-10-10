@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import api from '../globalvariables';
 function AddQuery() {
   const profileData = JSON.parse(localStorage.getItem('inquera-user'))
   const name = profileData.name;
@@ -16,7 +17,7 @@ function AddQuery() {
     const { title, query, tags } = queryForm;
     e.preventDefault();
     try {
-      let result = await fetch(`https://inquera.onrender.com/create-query`, {
+      let result = await fetch(api+`create-query`, {
         method: "post",
         body: JSON.stringify({ title, query, tags, name, email, userId }),
         headers: {

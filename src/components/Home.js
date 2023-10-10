@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import QueryCard from './QueryCard.js';
 import Loader from './Loader.js';
+import api from '../globalvariables.js';
 function Home() {
   const [data, setData] = useState([]);
   const [loader, setLoader] = useState(false);
   const fetchAllPolls = async () => {
     setLoader(true);
-    fetch(`https://inquera.onrender.com/all-query`)
+    fetch(api+`all-query`)
       .then((resp) => resp.json())
       .then((data) => {
         setData(data);

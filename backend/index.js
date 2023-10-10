@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-require('dotenv').config()
+// require('dotenv').config()
 require("./db/config");
 const User = require("./models/User");
 const cors = require("cors");
@@ -12,7 +12,8 @@ const corsOptions = {
   credentials: true,            //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 }
-app.use(cors(corsOptions)) // Use this after the variable declaration
+app.use(cors(corsOptions))// Use this after the variable declaration
+
 const bcrypt = require('bcryptjs');
 const PORT = process.env.PORT || 5000
 app.get("/", (req, resp) => {

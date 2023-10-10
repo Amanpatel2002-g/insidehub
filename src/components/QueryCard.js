@@ -4,13 +4,14 @@ import { FaHeart } from 'react-icons/fa';
 import { FiEdit } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import api from '../globalvariables';
 function QueryCard({ title, query, tags, name, email, _id, YoursQuery, yourQueriesFun }) {
   const [Query, SetUpdatedQuery] = useState(query);
   const handleDeleteQuery = async () => {
     const yes = window.confirm("Are you sure want to delete?")
     if (yes) {
       try {
-        await fetch(`https://inquera.onrender.com/delete-query/${_id}`, {
+        await fetch(api+`delete-query/${_id}`, {
           method: "Delete",
           headers: {
             'Content-Type': 'application/json'

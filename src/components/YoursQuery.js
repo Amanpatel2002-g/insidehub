@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import QueryCard from './QueryCard';
+import api from '../globalvariables';
 
 function YoursQuery() {
   const auth = localStorage.getItem('inquera-user'); 
@@ -7,7 +8,7 @@ function YoursQuery() {
   const userId= profileData._id; 
   const [data, setData] = useState([]);
   const yourQueries = async ()=>{
-    let result =    await fetch(`https://inquera.onrender.com/yours-query`,{
+    let result =    await fetch(api+`yours-query`,{
       method:"post", 
       body:JSON.stringify({userId}),
       headers: {

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import AnswerCard from './AnswerCard';
 import QueryCard from './QueryCard';
+import api from '../globalvariables';
 function SubmitAns() {
   const [ansData, setAnsData] = useState([]);
   const [answer, setAnswer] = useState('');
@@ -17,7 +18,7 @@ function SubmitAns() {
   const [data, setData] = useState({});
   const submitAnswer = async (e) => {
     e.preventDefault();
-    let answering = await fetch(`https://inquera.onrender.com/answering`, {
+    let answering = await fetch(api+`answering`, {
       method: "post",
       body: JSON.stringify({ queryId, answer, name, email, userId, likes }),
       headers: {
@@ -37,7 +38,7 @@ function SubmitAns() {
     fetchAnswers();
   }, [])
   const fetchQuery = async () => {
-    await fetch(`https://inquera.onrender.com/polls/${id}`)
+    await fetch(api+`polls/${id}`)
       .then((resp) => resp.json())
       .then((data) => {
         setData(data);
@@ -46,7 +47,7 @@ function SubmitAns() {
       })
   }
   const fetchAnswers = async () => {
-    await fetch(`https://inquera.onrender.com/answers/${id}`)
+    await fetch(api+`${id}`)
       .then((resp) => resp.json())
       .then((ansData) => {
         setAnsData(ansData);
